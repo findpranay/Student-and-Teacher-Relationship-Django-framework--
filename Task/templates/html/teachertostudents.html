@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher-Student Relationship</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+    <style>
+        .n{
+            background-color: rgb(25, 26, 26);
+            padding: 1%;
+            font-style:initial;
+           
+        }
+        .navbar-brand{
+            font-family: 'Times New Roman', Times, serif;
+        }
+        body{
+            background-image: url("https://media.istockphoto.com/id/1410336912/photo/happy-teacher-and-schoolgirl-giving-high-five-during-class-at-school.webp?b=1&s=170667a&w=0&k=20&c=VzOy6zKCCYu_zVlu-KUwK_ujKYUJxbDERgSyEANQ-8w=");
+            background-size: cover;
+        
+        }
+    </style>
+    
+</head>
+<body>
+
+    <nav class="n">
+        <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+     <a style="margin-left: 30%; color: whitesmoke;font-size:170%;" class="navbar-brand" href="#">Select a Teacher to See Their Students</a>
+         </nav>
+    <div >
+    
+        <div style="margin-left: 18%;margin-top: 5%;border: 1px solid whitesmoke; padding: 12%;box-sizing: border-box; background-color: whitesmoke; opacity: 0.8;border-radius: 4%; text-align: center; margin-right: 18%;">
+       
+    <form method="post">
+        {% csrf_token %}
+      <h7><label for="teacher"><h4>Select a Teacher:</h4>   </label></h7>
+        <select name="teacher" id="teacher">
+            {% for teacher in teachers %}
+                <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Show Students">
+    </form>
+    <br>
+
+    <h2>Students for the selected teacher:</h2>
+    {% if students %}
+    <br><ol type="1">
+            {% for student in students %}
+            <h4>    <li>{{ student.name }}</li></h4>
+            {% endfor %}
+        </ol>
+        {% else %}
+        <ul>    <h4><li>No students selected.</li></ul></h4>
+        {% endif %}
+</div>
+</div>
+</body>
+</html>

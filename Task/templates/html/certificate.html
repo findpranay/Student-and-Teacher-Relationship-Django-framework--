@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+   
+      <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js">
+      </script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <style>
+        .n{
+            background-color: rgb(25, 26, 26);
+            padding: 1%;
+            font-style:initial;
+           
+        }
+        .navbar-brand{
+            font-family: 'Times New Roman', Times, serif;
+        }
+        body{
+            background-image: url("https://media.istockphoto.com/id/1410336912/photo/happy-teacher-and-schoolgirl-giving-high-five-during-class-at-school.webp?b=1&s=170667a&w=0&k=20&c=VzOy6zKCCYu_zVlu-KUwK_ujKYUJxbDERgSyEANQ-8w=");
+            background-size: cover;
+        
+        }
+    </style>
+    
+    <title>Certification</title>
+</head>
+<body>
+    <nav class="n">
+        <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+     <a style="margin-left: 35%; color: whitesmoke;font-size:150%;" class="navbar-brand" href="#">Generate Certificate</a>
+         </nav>
+    <div >
+    
+        <div style="margin-left: 18%;margin-top:10px;border: 1px solid whitesmoke; padding: 12%;box-sizing: border-box; background-color: whitesmoke; opacity: 0.8;border-radius: 4%; text-align: center; margin-right: 18%;">
+          
+    <form method="post">
+        {% csrf_token %}
+        <label for="student_name"><h5>Student Name:</h5></label>
+        <input type="text"   id="student_name" name="student_name" required><br><br>
+        <label for="teacher_name"><h5>Teacher Name:</h5></label>
+        <input type="text"   id="teacher_name" name="teacher_name" required><br><br>
+        <label for="description"><h5>Certificate Description:</h5></label>
+        <textarea id="description" class="description"  name="description" required></textarea><br><br>
+        <input type="submit" value="Generate Certificate">
+    </form>
+
+   
+<div id="pdf" style="background-color:wheat   ; border-radius: 4%; text-align: center;padding: 5%;margin-top:10px;">
+
+    
+    {% if certificate %}
+    
+        <h1>Certificate of Achievement</h1>
+        <p>This is to certify that</p>
+        <h3>Student: {{ certificate.student.name }}</h3>
+        <p>has successfully completed the course under the guidance of</p>
+        
+        <h3>Teacher: {{ certificate.teacher.name }}</h3><br>
+        
+         {{ certificate.description }}
+    {% endif %}
+</div>  
+ 
+<br><br>
+<button id="cmd">Download PDF</button>
+  
+    <script>
+ 
+        var doc= new jsPDF();
+        $('#cmd').click(function () {
+            doc.text($('#student_name').val(), 10, 10);
+           
+            doc.text($('#teacher_name').val(), 10, 20)
+          doc.text($('#description').val(), 10, 30)
+
+          doc.save('certificate.pdf'); 
+        });
+
+
+
+        
+    </script>
+<button onclick="totoken()">Verification of Certificate</button>
+{% if redirect_token %}
+
+<script>
+    function totoken(){
+    
+    window.location.href = "verify_certificate/{{redirect_token}}/";
+    }
+</script>
+{% else %}
+<p>No redirect token available</p>
+{% endif %}
+</div>
+</div>
+</body>
+</html>

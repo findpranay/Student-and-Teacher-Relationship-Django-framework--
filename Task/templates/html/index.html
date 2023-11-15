@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Assignment</title>
+<style>
+ 
+    
+    .n{
+        background-color:rgb(24, 23, 23);
+        padding: 1%;
+        font-style:initial;
+       
+    }
+    .navbar-brand{
+        font-family: 'Times New Roman', Times, serif;
+    }
+    body{
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8wJc6ZaTZ-6zUpP2X75s2d4lK0z1ROf3fPw&usqp=CAU");
+        background-size: cover;
+    
+    }
+
+
+    ul {
+  list-style-type: none;
+  margin: -8px;
+  padding: 0;
+  overflow: hidden;
+  background-color: #1c1a1a;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: rgb(190, 188, 185);
+  text-align: center;
+  padding: 18px 20px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+    
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-20px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+
+
+.avatar {
+  overflow: hidden;
+  animation: float 6s ease-in-out infinite;
+  
+}
+</style>
+</head>
+
+<body>
+<ul>
+
+<li>    <a  href="{% url 'student_teacher' %}">Student To Find Teacher</a></li>
+  <li>  <a  href="{% url 'teacher_students' %}">Teacher To Find Student</a></li>
+    <li><a  href="{% url 'certificate' %}">Create Certification Of Student-Teacher</a></li>
+</ul>
+    <div class="avatar">
+        <img style="height: 150px; width: 1000px;margin-top:18%; margin-left: 18%;" src="https://prishnistorageenv.blob.core.windows.net/static/images/logo_cropped.svg">
+    
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js">
+    </script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+  <style>
+  
+  .animate-charcter
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #155715 0%,
+    #397a10 29%,
+    #13ff66 67%,
+    #00ff62 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 150% auto;
+  color: #fff;
+  background-clip: text;
+-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 8s infinite;
+  display: inline-block;
+      font-size: 60px;
+      font-family: 'Times New Roman', Times, serif;
+margin-top: 25%;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 300% center;
+  }
+}
+  .n{
+          background-color: rgb(25, 26, 26);
+          padding: 1%;
+          font-style:initial;
+         
+      }
+      .navbar-brand{
+          font-family: 'Times New Roman', Times, serif;
+      }
+      body{
+          background-image: url("data:image/jpeg;base64,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    ");
+          background-size: cover;
+      
+      }
+  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verification Result</title>
+</head>
+<body>
+    <nav class="n">
+        <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+     <a style="margin-left: 35%; color: whitesmoke;font-size:150%;" class="navbar-brand" href="#">Certificate Verification Using JWT Token</a>
+         </nav>
+    
+    
+    {% if status == 'success' %}
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h4 class="animate-charcter">{{ message }}</h4>
+        </div>
+    </div>
+  </div>
+   {% elif status == 'error' %}
+   <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+      
+        <h4 style="color: red; font-family: 'Times New Roman', Times, serif; font-size: 60px;margin-top: 25%;">{{ message }}</h4>
+    </div>
+</div>
+</div>
+    {% endif %}
+
+</body>
+</html>

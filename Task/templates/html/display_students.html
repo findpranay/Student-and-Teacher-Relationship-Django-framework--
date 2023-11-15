@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+</head>
+<body>
+    <h1>Students</h1>
+    
+    <ul>
+        {% for student in students %}
+            <li>{{ student.name }}</li>
+        {% empty %}
+            <li>No students available</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
